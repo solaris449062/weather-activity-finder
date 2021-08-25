@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 
-function Form({setSubmittedData}) { // callback from the App component
+function Form({handleSubmittedData}) { // callback from the App component
 const [address, setAddress] = useState("San Francisco, CA");
 
-function handleLocationChange(event) {
+function handleLocationChange(event) { // sets the input to the address variable
     setAddress(event.target.value); 
   };
 
 function handleSubmit(event) {
     event.preventDefault();
-    setSubmittedData(address); // passes the address to the App component so it can be passed to the geocoding API
+    handleSubmittedData(address); // passes the address to the App component so it can be passed to the geocoding API
   };
 
     return (
