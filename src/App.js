@@ -30,11 +30,14 @@ function App() {
   // weather query
 
   const weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${addressLatLng.lat}&lon=${addressLatLng.lng}&exclude=daily&appid=${OPENWEATHER_KEY}`;
+  const [weather, setWeather] = useState("");
   useEffect(() => {
     fetch(weatherAPI)
     .then(response => response.json())
-    .then(json => console.log(json.current.temp - 273))
+    .then(json => setWeather(json))
   }, []);
+
+  console.log(weather)
 
 
 
