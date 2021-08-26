@@ -57,7 +57,7 @@ function App() {
     <div>
         <Form handleSubmittedData={handleSubmittedData}/>
         <Weather weather={weather} addressLatLng={addressLatLng}/>
-        <Map addressLatLng={addressLatLng}/>
+        <Map address={address} addressLatLng={addressLatLng}/>
     </div>
   )}
 
