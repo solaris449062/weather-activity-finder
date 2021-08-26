@@ -15,10 +15,10 @@ function Weather({weather}) {
             <h2> {
                 !weather ? 
                 "Loading temperature" : 
-                kelvinToFahrenheit(weather.current.temp) + "°F / " + 
-                kelvinToCelcius(weather.current.temp) + "°C"
+                kelvinToFahrenheit(weather.current.temp) + " °F  /  " + 
+                kelvinToCelcius(weather.current.temp) + " °C"
             } </h2>
-            {/* <h2>{`Relative humidity: ${weather.current.humidity} %`}</h2> */}
+            <h2>{!weather ? "Loading humidity..." : `Relative humidity: ${weather.current.humidity} %`}</h2>
         </div>
     )
 }

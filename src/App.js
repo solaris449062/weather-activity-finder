@@ -1,16 +1,19 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import GoogleMapReact from 'google-map-react';
 import {GOOGLE_KEY, OPENWEATHER_KEY} from './config';
 import Form from "./Form";
 import Weather from "./Weather";
+import Map from "./Map"
 
 
-const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
-const originCoord = newYorkCoord;
 
 function App() {
-  const [addressLatLng, setAddressLatLng] = useState(newYorkCoord); // this variable will save the geocoded latitude and longitude
+
+  const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
+  const sanFranciscoCoord = {lat: 37.7749295, lng: -122.4194155}
+  const originCoord = sanFranciscoCoord;
+
+  const [addressLatLng, setAddressLatLng] = useState(sanFranciscoCoord); // this variable will save the geocoded latitude and longitude
   const [weather, setWeather] = useState("");
   
 
@@ -47,31 +50,13 @@ function App() {
     .then(json => setWeather(json))
   }, [addressLatLng]);
 
- 
-
   console.log({weather});
 
-  // map loading
-  const mapOptions = {
-    center: originCoord,
-    zoom: 11
-  };
-
   return (
-<div>
-    <Form handleSubmittedData={handleSubmittedData}/>
-    <Weather weather={weather}/>
-    
-
-    {/* Important! Always set the container height explicitly*/}
-    <div style={{ height: '100vh', width: '50%' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: GOOGLE_KEY }}
-        defaultCenter={mapOptions.center}
-        defaultZoom={mapOptions.zoom}
-      >
-      </GoogleMapReact>
-    </div>
+    <div>
+        <Form handleSubmittedData={handleSubmittedData}/>
+        <Weather weather={weather}/>
+        <Map addressLatLng={addressLatLng}/>
     </div>
   )}
 
