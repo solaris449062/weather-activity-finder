@@ -18,7 +18,7 @@ function Weather({weather}) {
                 kelvinToFahrenheit(weather.current.temp) + "°F / " + 
                 kelvinToCelcius(weather.current.temp) + "°C"
             } </h2>
-            <h2>{`Relative humidity: ${weather.current.humidity} %`}</h2>
+            {/* <h2>{`Relative humidity: ${weather.current.humidity} %`}</h2> */}
         </div>
     )
 }
