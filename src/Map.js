@@ -1,6 +1,7 @@
 import React from "react";
 import GoogleMapReact from 'google-map-react';
 import {GOOGLE_KEY, OPENWEATHER_KEY} from './config';
+import googleMapReact from "google-map-react";
 
 function Map({addressLatLng}) {
     
@@ -12,22 +13,25 @@ function Map({addressLatLng}) {
       center: originCoord,
       zoom: 11
     };
-  
+
     const handleApiLoaded = (map, maps) => {
-      new maps.Marker({
+        console.log(map)
+        console.log(maps)
+        new maps.Marker({
         position: addressLatLng,
         map
         })
-      map.setCenter(sanFranciscoCoord)
       console.log("handleApiLoaded is called")
-      console.log(addressLatLng)
+    //   console.log(addressLatLng)
+
     };
     
     return (
         <div style={{ height: '100vh', width: '50%' }}>
             <GoogleMapReact
-            bootstrapURLKeys={{ key: GOOGLE_KEY }}
+            bootstrapURLKeys={{ key: GOOGLE_KEY, libraries:'places'}}
             defaultCenter={mapOptions.center}
+            center={addressLatLng}
             defaultZoom={mapOptions.zoom}
             yesIWantToUseGoogleMapApiInternals={true}
             onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}

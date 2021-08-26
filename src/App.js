@@ -13,27 +13,28 @@ function App() {
   const sanFranciscoCoord = {lat: 37.7749295, lng: -122.4194155}
   const originCoord = sanFranciscoCoord;
 
-  const [addressLatLng, setAddressLatLng] = useState(sanFranciscoCoord); // this variable will save the geocoded latitude and longitude
+  const [address, setAddress] = useState("San Francisco, CA"); // this variable will save the geocoded latitude and longitude
+  const [addressLatLng, setAddressLatLng] = useState(originCoord); // this variable will save the geocoded latitude and longitude
   const [weather, setWeather] = useState("");
   
 
   // gets the form input and passes to the geocoding function
   function handleSubmittedData(address) {
     console.log(address);
-    geocoding(address);
+    setAddress(address)
   };
 
   // geocoding query with the output as another variable: addressLatLng
-  function geocoding(address) {
-  const geocodingAPI = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_KEY}`;
+
+  useEffect(() => {
+    const geocodingAPI = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_KEY}`;
     fetch(geocodingAPI)
     .then(response => response.json())
     .then(json => {
       console.log(json.results[0].geometry.location)
       setAddressLatLng(json.results[0].geometry.location)
-      }
-    )
-  }
+      })
+  }, [address])
   
   // sends the coordinates (addressLatLng) to the weather query function
   //weatherQuery(addressLatLng);
@@ -55,7 +56,7 @@ function App() {
   return (
     <div>
         <Form handleSubmittedData={handleSubmittedData}/>
-        <Weather weather={weather}/>
+        <Weather weather={weather} addressLatLng={addressLatLng}/>
         <Map addressLatLng={addressLatLng}/>
     </div>
   )}
