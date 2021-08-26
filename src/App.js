@@ -41,7 +41,7 @@ function App() {
   
   useEffect(() => {
   console.log({addressLatLng})
-  const weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${addressLatLng.lat}&lon=${addressLatLng.lng}&exclude=daily&appid=${OPENWEATHER_KEY}`;
+  const weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${addressLatLng.lat}&lon=${addressLatLng.lng}&appid=${OPENWEATHER_KEY}`;
     fetch(weatherAPI)
     .then(response => response.json())
     .then(json => setWeather(json))
@@ -60,11 +60,9 @@ function App() {
   return (
 <div>
     <Form handleSubmittedData={handleSubmittedData}/>
-    <Weather weather={weather}/>
-    
 
     {/* Important! Always set the container height explicitly*/}
-    <div style={{ height: '100vh', width: '50%' }}>
+    <div style={{ height: '80vh', width: '50%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: GOOGLE_KEY }}
         defaultCenter={mapOptions.center}
@@ -72,7 +70,10 @@ function App() {
       >
       </GoogleMapReact>
     </div>
-    </div>
+
+    <Weather weather={weather}/>
+
+</div>
   )}
 
 export default App;
