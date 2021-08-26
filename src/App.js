@@ -12,6 +12,7 @@ const originCoord = newYorkCoord;
 function App() {
   const [addressLatLng, setAddressLatLng] = useState(newYorkCoord); // this variable will save the geocoded latitude and longitude
   const [weather, setWeather] = useState("");
+  
 
   // gets the form input and passes to the geocoding function
   function handleSubmittedData(address) {
@@ -22,7 +23,6 @@ function App() {
   // geocoding query with the output as another variable: addressLatLng
   function geocoding(address) {
   const geocodingAPI = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_KEY}`;
-  
     fetch(geocodingAPI)
     .then(response => response.json())
     .then(json => {
@@ -38,15 +38,16 @@ function App() {
 
   // weather query with the output as another variable: weatherData
 
-//function weatherQuery(addressLatLng) {
+  
   useEffect(() => {
   console.log({addressLatLng})
   const weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${addressLatLng.lat}&lon=${addressLatLng.lng}&exclude=daily&appid=${OPENWEATHER_KEY}`;
     fetch(weatherAPI)
     .then(response => response.json())
-    .then(json => setWeather(json)
-    )
+    .then(json => setWeather(json))
   }, [addressLatLng]);
+
+ 
 
   console.log({weather});
 
