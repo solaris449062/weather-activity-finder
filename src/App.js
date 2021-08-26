@@ -8,7 +8,8 @@ const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
 const originCoord = newYorkCoord;
 
 function App() {
-  const [addressLatLng, setAddressLatLng] = useState(""); // this variable will save the geocoded latitude and longitude
+  const [addressLatLng, setAddressLatLng] = useState(newYorkCoord); // this variable will save the geocoded latitude and longitude
+  const [weather, setWeather] = useState("");
 
   // gets the form input and passes to the geocoding function
   function handleSubmittedData(address) {
@@ -24,14 +25,15 @@ function App() {
     .then(response => response.json())
     .then(json => {
       console.log(json.results[0].geometry.location)
-      setAddressLatLng(json.results[0].geometry.location)
+      const latLng = json.results[0].geometry.location
+      weatherQuery(latLng);
+      //setAddressLatLng(json.results[0].geometry.location)
       }
     )
   }
   
   // sends the coordinates (addressLatLng) to the weather query function
-  weatherQuery(addressLatLng);
-
+  
 
   // weather query with the output as another variable: weatherData
 function weatherQuery(addressLatLng) {
@@ -39,7 +41,8 @@ function weatherQuery(addressLatLng) {
   const weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${addressLatLng.lat}&lon=${addressLatLng.lng}&exclude=daily&appid=${OPENWEATHER_KEY}`;
     fetch(weatherAPI)
     .then(response => response.json())
-    .then(json => console.log(json))
+    .then(json => setWeather(json)
+    )
 }
 
 
