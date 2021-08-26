@@ -45,7 +45,6 @@ function weatherQuery(addressLatLng) {
     )
 }
 
-
   // map loading
   const mapOptions = {
     center: originCoord,
