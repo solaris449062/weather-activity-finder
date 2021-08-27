@@ -13,7 +13,7 @@ function Map({address, addressLatLng}) {
   // for initial map loading
   const mapOptions = {
     center: originCoord,
-    zoom: 11
+    zoom: 10
   };
 
   // const [mapApiLoaded, setMapApiLoaded] = useState(false)
@@ -37,7 +37,7 @@ const [maps, setMaps] = useState(undefined);
     let request = {
       location: addressLatLng,
       rankBy: maps.places.RankBy.PROMINENCE,
-      keyword: "sushi",
+      keyword: ["camping", "trail", "river", "beach"],
       radius: "15000"
     }
 
