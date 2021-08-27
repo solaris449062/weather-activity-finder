@@ -17,12 +17,15 @@ function App() {
   const [address, setAddress] = useState("San Francisco, CA"); // this variable will save the geocoded latitude and longitude
   const [addressLatLng, setAddressLatLng] = useState(originCoord); // this variable will save the geocoded latitude and longitude
   const [weather, setWeather] = useState("");
+  const [formSubmit, setFormSubmit] = useState(false); // to detect form submission for conditional map rendering
+  console.log("formSubmit is: " + formSubmit)
   
 
   // gets the form input and passes to the geocoding function
   function handleSubmittedData(address) {
     console.log(address);
-    setAddress(address)
+    setAddress(address);
+    setFormSubmit(true);
   };
 
   // geocoding query with the output as another variable: addressLatLng
@@ -75,7 +78,7 @@ function App() {
             horizontal="center"
           >
             <h3> Where are you located? </h3>
-            <span><Form handleSubmittedData={handleSubmittedData}/></span>
+            <span><Form handleSubmittedData={handleSubmittedData} /></span>
           </Column>
           <Column
             style={{
@@ -92,7 +95,7 @@ function App() {
           </Column>
         </Row>
         <Row wrap horizontal="spaced" style={{ marginTop: 8 }}>
-        <Map address={address} addressLatLng={addressLatLng}/>
+        {formSubmit ? <Map address={address} addressLatLng={addressLatLng}/> : <div style={{ height: '100vh', width: '50%' }}/>}
           <Column
             style={{
               backgroundColor: "#FFFFFF",
