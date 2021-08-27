@@ -13,6 +13,7 @@
 
 ### Future Updates ###
 - Visualization layer: Google map → heatmap API https://developers.google.com/maps/documentation/javascript/heatmaplayer
+- Marker interactivity (infowindows)
 - Ability to add each activity to an itinerary
 - Indoor activities - include restaurants - add new button to find food (versus find activity)
 - Color coded icons based on recommended activity
