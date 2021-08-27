@@ -5,7 +5,7 @@ import Form from "./Form";
 import Weather from "./Weather";
 import Map from "./Map"
 
-
+const google = window.google
 
 function App() {
 
@@ -54,13 +54,11 @@ function App() {
   console.log({weather});
 
   return (
-
     <div>
         <Form handleSubmittedData={handleSubmittedData}/>
-        <Weather weather={weather} addressLatLng={addressLatLng}/>
         <Map address={address} addressLatLng={addressLatLng}/>
+        <Weather weather={weather} addressLatLng={addressLatLng}/>
     </div>
-
   )}
 
 export default App;
