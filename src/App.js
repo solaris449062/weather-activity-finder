@@ -64,7 +64,7 @@ function App() {
         <Row horizontal="center">
           <Column horizontal="center" style={{ marginBottom: 16 }}>
             <h1>HEADER</h1>
-            <span>caption text</span>
+            
           </Column>
         </Row>
         <Row wrap horizontal="spaced">
@@ -91,7 +91,8 @@ function App() {
             flexGrow={1}
             horizontal="center"
           >
-            <h3> This Week's Weather </h3>
+            <h3>UV Index Guide</h3>
+          <h4>Low: 1-2 | Moderate: 3-5 | High: 6-7 | Very High: 8-10 | Extreme: 11+</h4>
             <span></span>
           </Column>
         </Row>
