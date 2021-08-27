@@ -4,6 +4,7 @@ import {GOOGLE_KEY, OPENWEATHER_KEY} from './config';
 import Form from "./Form";
 import Weather from "./Weather";
 import Map from "./Map"
+import { Column, Row } from "simple-flexbox";
 
 const google = window.google
 
@@ -54,11 +55,74 @@ function App() {
   console.log({weather});
 
   return (
-    <div>
-        <Form handleSubmittedData={handleSubmittedData}/>
+
+<Column flexGrow={1}>
+        <Row horizontal="center">
+          <Column horizontal="center" style={{ marginBottom: 16 }}>
+            <h1>HEADER</h1>
+            <span>caption text</span>
+          </Column>
+        </Row>
+        <Row wrap horizontal="spaced">
+          <Column
+            style={{
+              backgroundColor: "#378FD3",
+              minWidth: 250,
+              padding: 12,
+              color: "#f5f5f5"
+            }}
+            flexGrow={1}
+            horizontal="center"
+          >
+            <h3> Where are you located? </h3>
+            <span><Form handleSubmittedData={handleSubmittedData}/></span>
+          </Column>
+          <Column
+            style={{
+              backgroundColor: "#378FD3",
+              minWidth: 250,
+              padding: 12,
+              color: "#f5f5f5"
+            }}
+            flexGrow={1}
+            horizontal="center"
+          >
+            <h3> This Week's Weather </h3>
+            <span></span>
+          </Column>
+        </Row>
+        <Row wrap horizontal="spaced" style={{ marginTop: 8 }}>
         <Map address={address} addressLatLng={addressLatLng}/>
-        <Weather weather={weather} addressLatLng={addressLatLng}/>
-    </div>
-  )}
+          <Column
+            style={{
+              backgroundColor: "#FFFFFF",
+              minWidth: 250,
+              maxWidth: 800,
+              padding: 12,
+            }}
+            flexGrow={1}
+            horizontal="center"
+          >
+            <h3>  </h3>
+            <span><Weather weather={weather} addressLatLng={addressLatLng}/></span>
+          </Column>
+        </Row>
+        
+      </Column>
+    );
+
+
+
+
+    
+  }
 
 export default App;
+
+
+
+//<div>
+   // <Form handleSubmittedData={handleSubmittedData}/>
+    //<Map address={address} addressLatLng={addressLatLng}/>
+    //<Weather weather={weather} addressLatLng={addressLatLng}/>
+    //</div>
