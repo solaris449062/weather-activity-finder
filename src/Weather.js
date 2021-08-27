@@ -1,4 +1,5 @@
 import React from "react";
+import DailyForecasts from "./DailyForecasts";
 
 function Weather({weather}) {
     function kelvinToCelcius (tempKelvin) {
@@ -18,7 +19,10 @@ function Weather({weather}) {
                 kelvinToFahrenheit(weather.current.temp) + " °F  /  " + 
                 kelvinToCelcius(weather.current.temp) + " °C"
             } </h2>
-            <h2>{!weather ? "Loading humidity..." : `Relative humidity: ${weather.current.humidity} %`}</h2>
+
+            {/* <h2>{`Relative humidity: ${weather.current.humidity} %`}</h2> */}
+            <div> {!weather ? "..." : <DailyForecasts weather={weather}/>} </div>
+
         </div>
     )
 }

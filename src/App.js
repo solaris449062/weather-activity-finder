@@ -45,7 +45,7 @@ function App() {
   
   useEffect(() => {
   console.log({addressLatLng})
-  const weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${addressLatLng.lat}&lon=${addressLatLng.lng}&exclude=daily&appid=${OPENWEATHER_KEY}`;
+  const weatherAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${addressLatLng.lat}&lon=${addressLatLng.lng}&appid=${OPENWEATHER_KEY}`;
     fetch(weatherAPI)
     .then(response => response.json())
     .then(json => setWeather(json))
@@ -54,11 +54,13 @@ function App() {
   console.log({weather});
 
   return (
+
     <div>
         <Form handleSubmittedData={handleSubmittedData}/>
         <Weather weather={weather} addressLatLng={addressLatLng}/>
         <Map address={address} addressLatLng={addressLatLng}/>
     </div>
+
   )}
 
 export default App;
