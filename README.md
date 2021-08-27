@@ -22,6 +22,6 @@ Examples:
 - If humidity is above 60, then use a red color icon for outdoor rock climbing
 - Overlay with heatmap with ability to switch between humidity, temperature, etc.
 
-![Mockup](https://user-images.githubusercontent.com/81663925/130524666-2b5f4713-bc5a-4e45-bd02-b56cc5dd5b07.png)
+![alt text](https://github.com/solaris449062/weather-activity-finder/blob/main/screenshot.png)
 
 
