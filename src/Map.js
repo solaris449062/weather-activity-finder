@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleMapReact from 'google-map-react';
 import {GOOGLE_KEY, OPENWEATHER_KEY} from './config';
 
@@ -8,7 +8,8 @@ function Map({address, addressLatLng}) {
     
   const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
   const sanFranciscoCoord = {lat: 37.7749295, lng: -122.4194155}
-  const originCoord = sanFranciscoCoord;
+  const boulderCoord = {lat: 40.0149856, lng: -105.2705456}
+  const originCoord = boulderCoord;
   // for initial map loading
   const mapOptions = {
     center: originCoord,
@@ -19,11 +20,24 @@ function Map({address, addressLatLng}) {
   // const [mapInstance, setMapInstance] = useState(null)
   // const [mapApi, setMapApi] = useState(null)
 
+const [map, setMap] = useState(undefined);
+const [maps, setMaps] = useState(undefined);
+
   function handleApiLoaded(map, maps) {
+    console.log("addressLatLng from handleApiLoaded", addressLatLng)
+    // handlePlaceSearch()
+    setMap(map)
+    setMaps(maps)
+  }
+
+  function handlePlaceSearch() {
+    if (!maps) {
+      return
+    }
     let request = {
       location: addressLatLng,
       rankBy: maps.places.RankBy.PROMINENCE,
-      keyword: "camping",
+      keyword: "sushi",
       radius: "15000"
     }
 
@@ -53,6 +67,10 @@ function Map({address, addressLatLng}) {
     console.log("handleApiLoaded is called")
   };
   
+useEffect(() => {
+  handlePlaceSearch()
+}, [addressLatLng])
+
   return (
     <div style={{ height: '100vh', width: '50%' }}>
       <GoogleMapReact
