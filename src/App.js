@@ -1,36 +1,40 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import GoogleMapReact from 'google-map-react';
 import {GOOGLE_KEY, OPENWEATHER_KEY} from './config';
 import Form from "./Form";
 import Weather from "./Weather";
+import Map from "./Map"
 
 
-const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
-const originCoord = newYorkCoord;
 
 function App() {
-  const [addressLatLng, setAddressLatLng] = useState(newYorkCoord); // this variable will save the geocoded latitude and longitude
+
+  const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
+  const sanFranciscoCoord = {lat: 37.7749295, lng: -122.4194155}
+  const originCoord = sanFranciscoCoord;
+
+  const [address, setAddress] = useState("San Francisco, CA"); // this variable will save the geocoded latitude and longitude
+  const [addressLatLng, setAddressLatLng] = useState(originCoord); // this variable will save the geocoded latitude and longitude
   const [weather, setWeather] = useState("");
   
 
   // gets the form input and passes to the geocoding function
   function handleSubmittedData(address) {
     console.log(address);
-    geocoding(address);
+    setAddress(address)
   };
 
   // geocoding query with the output as another variable: addressLatLng
-  function geocoding(address) {
-  const geocodingAPI = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_KEY}`;
+
+  useEffect(() => {
+    const geocodingAPI = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_KEY}`;
     fetch(geocodingAPI)
     .then(response => response.json())
     .then(json => {
       console.log(json.results[0].geometry.location)
       setAddressLatLng(json.results[0].geometry.location)
-      }
-    )
-  }
+      })
+  }, [address])
   
   // sends the coordinates (addressLatLng) to the weather query function
   //weatherQuery(addressLatLng);
@@ -47,33 +51,16 @@ function App() {
     .then(json => setWeather(json))
   }, [addressLatLng]);
 
- 
-
   console.log({weather});
 
-  // map loading
-  const mapOptions = {
-    center: originCoord,
-    zoom: 11
-  };
-
   return (
-<div>
-    <Form handleSubmittedData={handleSubmittedData}/>
 
-    {/* Important! Always set the container height explicitly*/}
-    <div style={{ height: '80vh', width: '50%' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: GOOGLE_KEY }}
-        defaultCenter={mapOptions.center}
-        defaultZoom={mapOptions.zoom}
-      >
-      </GoogleMapReact>
+    <div>
+        <Form handleSubmittedData={handleSubmittedData}/>
+        <Weather weather={weather} addressLatLng={addressLatLng}/>
+        <Map address={address} addressLatLng={addressLatLng}/>
     </div>
 
-    <Weather weather={weather}/>
-
-</div>
   )}
 
 export default App;
