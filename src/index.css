@@ -12,6 +12,20 @@ code {
     monospace;
 }
 
-h4{
-  margin: 5px;
+h2{
+  margin: 8px;
 }
+
+h4{
+  margin: 10px;
+}
+
+h3{
+  margin: 8px;
+}
+
+p{
+  margin: 6px;
+}
+
+

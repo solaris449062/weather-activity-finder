@@ -42,9 +42,10 @@ function Day({day}) {
                 <h3> {date}</h3>
                 <img alt={day.weather[0].main} src={handleWeatherImage(day.weather[0].main)}></img>
                 <h3> {kelvinToFahrenheit(temp.day) + "°F / " + kelvinToCelcius(temp.day) + "°C"}</h3>
-                <p>{day.weather[0].main}</p>
+                <p>Skies: {day.weather[0].main}</p>
                 <h3 style={{color: "#D3AD37"}}>UV Index: {day.uvi}</h3>
                 <p>Relative humidity: {day.humidity}%</p>
+                <br></br>
                 <br></br>
                 <br></br>
                 <br></br>

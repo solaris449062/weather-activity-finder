@@ -63,7 +63,7 @@ function App() {
 <Column flexGrow={1}>
         <Row horizontal="center">
           <Column horizontal="center" style={{ marginBottom: 16 }}>
-            <h1>HEADER</h1>
+            <h1>Outdoor Activity Planner</h1>
             
           </Column>
         </Row>
@@ -92,7 +92,7 @@ function App() {
             horizontal="center"
           >
             <h3>UV Index Guide</h3>
-          <h4>Low: 1-2 | Moderate: 3-5 | High: 6-7 | Very High: 8-10 | Extreme: 11+</h4>
+          <h4 style={{color: "#EDC23D"}}>Low: 1-2 | Moderate: 3-5 | High: 6-7 | Very High: 8-10 | Extreme: 11+</h4>
             <span></span>
           </Column>
         </Row>
