@@ -12,7 +12,8 @@ function App() {
 
   const newYorkCoord = { lat: 40.7128, lng: -74.0060 };
   const sanFranciscoCoord = {lat: 37.7749295, lng: -122.4194155}
-  const originCoord = sanFranciscoCoord;
+  const boulderCoord = {lat: 40.0149856, lng: -105.2705456}
+  const originCoord = boulderCoord;
 
   const [address, setAddress] = useState("San Francisco, CA"); // this variable will save the geocoded latitude and longitude
   const [addressLatLng, setAddressLatLng] = useState(originCoord); // this variable will save the geocoded latitude and longitude
